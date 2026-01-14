@@ -4,5 +4,5 @@ import tailwindcss from '@tailwindcss/postcss'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/my-portfolio/',
+  base: '/',
 })
