@@ -7,98 +7,98 @@ const items = [
     year: "2021", 
     title: "Bronze Medal", 
     desc: "National Science Competition in Mathematics",
-    image: "/images/KSN.png" 
+    image: "images/KSN.png" 
   },
   { 
     side: "right", // Award
     year: "2021", 
     title: "Silver Medal", 
     desc: "Ruangguru Science Competition in Mathematics",
-    image: "/images/ksr.png" 
+    image: "images/ksr.png" 
   },
   { 
     side: "right", // Award
     year: "2021", 
     title: "Gold Medal", 
     desc: "International Mathematics Contest Singapore",
-    image: "/images/IMCS.png" 
+    image: "images/IMCS.png" 
   },
   { 
     side: "right", // Award
     year: "2021", 
     title: "Top 3 Gold Medal", 
     desc: "Asia International Mathematical Olympiad",
-    image: "/images/AIMO.png" 
+    image: "images/AIMO.png" 
   },
   { 
     side: "left", // Experience
     year: "2022-2024", 
     title: "Problem Setter MaQC TOC 13 & 14", 
     desc: "Problem Setter and Project Leader of Mathematics and Quiz Competition.",
-    image: "/images/maqc.png" 
+    image: "images/maqc.png" 
   },
   {
     side: "right", // Award
     year: "2023", 
     title: "Silver Medal", 
     desc: "Logicode National Competitive Programming Contest",
-    image: "/images/logicode.jpeg"
+    image: "images/logicode.jpeg"
   },
   {
     side: "left", // Experience
     year: "2022-2024", 
     title: "Academic Division Student Council", 
     desc: "Member (2022-2023) & Vice President (2023-2024) of Academic Division.",
-    image: "/images/osis.jpeg"
+    image: "images/osis.jpeg"
   },
   {
     side: "right", // Award
     year: "2023", 
     title: "Champion", 
     desc: "Electrical Engineering Competition UGM",
-    image: "/images/EEC.jpeg"
+    image: "images/EEC.jpeg"
   },
   { 
     side: "left", // Experience
     year: "2023-2024", 
     title: "Project Leader Mamacu Kakacu", 
     desc: "Non-profit Tutoring Initiatives by Thamrin Students.",
-    image: "/images/mamacu.png" 
+    image: "images/mamacu.png" 
   },
   { 
     side: "left", // Experience
     year: "2023-2025", 
     title: "Beasiswa Indonesia Maju Persiapan", 
     desc: "University Preparation Scholarship by Ministry of Education.",
-    image: "/images/bim.jpeg" 
+    image: "images/bim.jpeg" 
   },
   { 
     side: "left", // Experience
     year: "2024", 
     title: "Project Leader Thamrin Open House 2024", 
     desc: "Welcoming 1000+ people with $6,500 profit through sponsorship.",
-    image: "/images/oh.jpeg" 
+    image: "images/oh.jpeg" 
   },
   { 
     side: "left", // Experience
     year: "2024", 
     title: "Changemaker", 
     desc: "UC Berkeley Summer Program, Government Funded.",
-    image: "/images/sumpro.jpeg" 
+    image: "images/sumpro.jpeg" 
   },
   { 
     side: "left", // Experience
     year: "2024", 
     title: "AWS Internship", 
     desc: "Solution Architect, AI Conclave booth presentation.",
-    image: "/images/aws.jpeg" 
+    image: "images/aws.jpeg" 
   },
   {
     side: "right", // Award
     year: "2025", 
     title: "Top 7 Diploma", 
     desc: "M.H. Thamrin State Prominent High School",
-    image: "/images/ijazah.jpeg"
+    image: "images/ijazah.jpeg"
   }
 ];
 

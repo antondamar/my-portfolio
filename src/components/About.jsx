@@ -50,22 +50,22 @@ const aboutStyles = {
 const educationData = {
   "Primary": { 
     title: "Al-Azhar 9 Elementary School Bekasi", years: "2013 - 2019", location: "Indonesia",
-    images: ["/images/sd1.jpg", "/images/sd2.jpeg", "/images/sd3.jpg", "/images/sd5.jpeg", "/images/sd4.jpeg", "/images/sd6.jpeg"], 
+    images: ["images/sd1.jpg", "images/sd2.jpeg", "images/sd3.jpg", "images/sd5.jpeg", "images/sd4.jpeg", "images/sd6.jpeg"], 
     logo: "/logos/sd.png", scale: 2.2
   },
   "Junior": { 
     title: "115 Junior High School Jakarta", years: "2019 - 2022", location: "Indonesia",
-    images: ["/images/smabel1.png", "/images/smabel2.jpeg", "/images/smabel3.jpeg", "/images/smabel4.jpeg", "/images/smabel5.jpeg"],
+    images: ["images/smabel1.png", "images/smabel2.jpeg", "images/smabel3.jpeg", "images/smabel4.jpeg", "images/smabel5.jpeg"],
     logo: "/logos/smabel.png", scale: 3
   },
   "Senior": { 
     title: "M.H. Thamrin State Prominent High School Jakarta", years: "2022 - 2025", location: "Indonesia",
-    images: ["/images/mht1.jpeg", "/images/mht2.jpeg", "/images/mht6.jpg", "/images/mht5.jpeg", "/images/mht4.jpeg", "/images/mht3.jpeg"],
+    images: ["images/mht1.jpeg", "images/mht2.jpeg", "images/mht6.jpg", "images/mht5.jpeg", "images/mht4.jpeg", "images/mht3.jpeg"],
     logo: "/logos/mht.png", scale: 2.4
   },
   "Undergrad": { 
     title: "University of Toronto Mississauga", years: "2025 - Present", location: "Canada",
-    images: ["/images/utm1.webp", "/images/u2.jpg", "/images/u3.jpg", "/images/u4.jpg", "/images/utm5.jpeg"],
+    images: ["images/utm1.webp", "images/u2.jpg", "images/u3.jpg", "images/u4.jpg", "images/utm5.jpeg"],
     logo: "/logos/utm.png", scale: 2.8
   }
 };
@@ -73,7 +73,7 @@ const educationData = {
 // Preload the main image as soon as module loads
 const preloadImage = () => {
   const img = new Image();
-  img.src = '/images/me.jpeg';
+  img.src = 'images/me.jpeg';
 };
 preloadImage();
 
@@ -103,33 +103,33 @@ export default function About() {
     // Check if image is already cached
     const checkImage = new Image();
     checkImage.onload = () => setImageLoaded(true);
-    checkImage.src = '/images/me.jpeg';
+    checkImage.src = 'images/me.jpeg';
   }, []);
 
   const topTracks = [
-    { title: "Roman Picisan", artist: "Dewa 19", cover: "/images/dewa_cover.png", link: "https://music.apple.com/us/song/roman-picisan/533698550" },
-    { title: "Untitled 2014", artist: "G-Dragon", cover: "/images/untitled2014.jpg", link : "https://music.apple.com/us/song/untitled-2014/1246076508" },
-    { title: "Repeat After Me", artist: "The Weeknd", cover: "/images/repeat.jpg", link: "https://music.apple.com/us/song/repeat-after-me-interlude/1499378614" },
-    { title: "Style", artist: "Hearts2Hearts", cover: "/images/heart.jpg", link: "https://music.apple.com/us/song/style/1819694546" },
+    { title: "Roman Picisan", artist: "Dewa 19", cover: "images/dewa_cover.png", link: "https://music.apple.com/us/song/roman-picisan/533698550" },
+    { title: "Untitled 2014", artist: "G-Dragon", cover: "images/untitled2014.jpg", link : "https://music.apple.com/us/song/untitled-2014/1246076508" },
+    { title: "Repeat After Me", artist: "The Weeknd", cover: "images/repeat.jpg", link: "https://music.apple.com/us/song/repeat-after-me-interlude/1499378614" },
+    { title: "Style", artist: "Hearts2Hearts", cover: "images/heart.jpg", link: "https://music.apple.com/us/song/style/1819694546" },
     
-    { title: "Billie Jean", artist: "Michael Jackson", cover: "/images/mj.png", link: "https://music.apple.com/us/song/billie-jean/269573364" },
-    { title: "Supernatural", artist: "NewJeans", cover: "/images/supernatural.png", link: "https://music.apple.com/us/song/supernatural/1750576834" },
-    { title: "Ladykiller", artist: "Maroon 5", cover: "/images/ladykiller.png", link: "https://music.apple.com/us/album/overexposed-deluxe-version/1440808308" },
-    { title: "I Love U Bibeh", artist: "The Changcuters", cover: "/images/iloveyoubibeh.jpg", link: "https://music.apple.com/us/song/i-love-u-bibeh/307678662" },
+    { title: "Billie Jean", artist: "Michael Jackson", cover: "images/mj.png", link: "https://music.apple.com/us/song/billie-jean/269573364" },
+    { title: "Supernatural", artist: "NewJeans", cover: "images/supernatural.png", link: "https://music.apple.com/us/song/supernatural/1750576834" },
+    { title: "Ladykiller", artist: "Maroon 5", cover: "images/ladykiller.png", link: "https://music.apple.com/us/album/overexposed-deluxe-version/1440808308" },
+    { title: "I Love U Bibeh", artist: "The Changcuters", cover: "images/iloveyoubibeh.jpg", link: "https://music.apple.com/us/song/i-love-u-bibeh/307678662" },
   ];
 
   const topMovies = [
-    { title: "Money Heist", director: "Álex Pina", poster: "/images/money.webp", link: "https://www.imdb.com/title/tt6468322/" },
-    { title: "Prison Break", director: "Paul T. Scheuring", poster: "/images/prison.JPG", link: "https://www.imdb.com/title/tt0455275/" },
-    { title: "Incantation", director: "Kevin Ko", poster: "/images/incantation.avif", link: "https://www.imdb.com/title/tt18968540/" },
-    { title: "Haary Potter IX", director: "David Yates", poster: "/images/harry.jpg", link: "https://www.imdb.com/title/tt1201607/" },
-    { title: "The Dark Knight Rises", director: "Christopher Nolan", poster: "/images/batman.jpg", link: "https://www.imdb.com/title/tt1345836/" },
+    { title: "Money Heist", director: "Álex Pina", poster: "images/money.webp", link: "https://www.imdb.com/title/tt6468322/" },
+    { title: "Prison Break", director: "Paul T. Scheuring", poster: "images/prison.JPG", link: "https://www.imdb.com/title/tt0455275/" },
+    { title: "Incantation", director: "Kevin Ko", poster: "images/incantation.avif", link: "https://www.imdb.com/title/tt18968540/" },
+    { title: "Haary Potter IX", director: "David Yates", poster: "images/harry.jpg", link: "https://www.imdb.com/title/tt1201607/" },
+    { title: "The Dark Knight Rises", director: "Christopher Nolan", poster: "images/batman.jpg", link: "https://www.imdb.com/title/tt1345836/" },
   ];
 
   const topCars = [
-    { name: "Porsche Taycan Turbo S", model: "Frozen White", image: "/images/taycan.jpg" },
-    { name: "Ferrari 296 GTB", model: "Novitec", image: "/images/296.jpg" },
-    { name: "Mercedes-AMG G 63", model: "Edition 1", image: "/images/g63.jpg" },
+    { name: "Porsche Taycan Turbo S", model: "Frozen White", image: "images/taycan.jpg" },
+    { name: "Ferrari 296 GTB", model: "Novitec", image: "images/296.jpg" },
+    { name: "Mercedes-AMG G 63", model: "Edition 1", image: "images/g63.jpg" },
   ];
 
   return (
@@ -152,7 +152,7 @@ export default function About() {
                   
                   <motion.img
                     ref={imgRef}
-                    src="/images/me.jpeg"
+                    src="images/me.jpeg"
                     alt="Ferrel"
                     initial={{ opacity: 0, filter: "blur(12px)", scale: 1.05 }}
                     animate={{ 
