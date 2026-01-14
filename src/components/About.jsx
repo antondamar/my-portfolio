@@ -139,6 +139,7 @@ export default function About() {
       className="pt-32 pb-10 min-h-screen flex flex-col"
     >
       <div className="flex-grow">
+        <title>About</title>
         <AnimatePresence mode="wait">
           {!activeSection ? (
             <motion.div key="main" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, x: -20 }}>
