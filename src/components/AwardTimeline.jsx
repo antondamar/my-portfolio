@@ -141,7 +141,6 @@ export default function AwardTimeline() {
                 <div className="aspect-[1.414/1] bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 shadow-xl group">
                   <img 
                     src={item.image} 
-                    alt={item.title} 
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                   />
                 </div>

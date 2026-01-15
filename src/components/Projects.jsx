@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import ProjectCard from './ProjectCard';
+import AnimatedImage from './AnimatedImage';
 
 const projects = [
   {
@@ -14,7 +15,7 @@ const projects = [
         "/images/projects/aurum-tracker-analytics.png",
         "/images/projects/aurum-tracker-history.png"
     ],
-    techStack: ["React", "Firebase", "Tailwind CSS", "Recharts"],
+    techStack: ["React", "Firebase", "Tailwind CSS", "Recharts", "Render"],
     features: [
         "Real-time cryptocurrency & stock prices",
         "Multi-currency support (USD, CAD, IDR)",
@@ -24,11 +25,108 @@ const projects = [
     ],
     liveUrl: "https://aurum-au.com/",
     githubUrl: "https://github.com/antondamar/aurum"
-  },
-  // Add more projects here as needed
+  }
+//   {
+//     title: "Codeforces++",
+//     description: ".",
+//     tags: ["#", "#"],
+//     image: "/images/projects/logo-cp.jpg", // Add cover image
+//     screenshots: [
+//         "/images/projects/#.png",
+//         "/images/projects/#.png",
+//         "/images/projects/#.png",
+//         "/images/projects/#.png"
+//     ],
+//     techStack: ["#", "#"],
+//     features: [
+//         "Compare user to user (ini nanti benerin ya semuanya kata katanya)",
+//         "Problem recommendations from AI",
+//         "What problem to solve next",
+//         "Ratings calculator (rank target on the next contest to get xxx ratings)",
+//         "..."
+//     ],
+//     liveUrl: "#",
+//     githubUrl: "#"
+//   },
+//   {
+//     title: "Aurum Crypto Insights",
+//     description: ".",
+//     tags: ["#", "#"],
+//     image: "/images/projects/logo-aurum-insights.webp", // Add cover image
+//     screenshots: [
+//         "/images/projects/#.png",
+//         "/images/projects/#.png",
+//         "/images/projects/#.png",
+//         "/images/projects/#.png"
+//     ],
+//     techStack: ["#", "#"],
+//     features: [
+//         "Technical Analysis by AI",
+//         "Suggestion on an tokens",
+//         "Gather news, sentiment, and technical analysis",
+//         "",
+//         "..."
+//     ],
+//     liveUrl: "#",
+//     githubUrl: "#"
+//   },
+//   {
+//     title: "Mirror Mirror",
+//     description: ".",
+//     tags: ["#", "#"],
+//     image: "/images/projects/logo-mirror.jpg", // Add cover image
+//     screenshots: [
+//         "/images/projects/#.png",
+//         "/images/projects/#.png",
+//         "/images/projects/#.png",
+//         "/images/projects/#.png"
+//     ],
+//     techStack: ["#", "#"],
+//     features: [
+//         "Fashion check",
+//         "Color harmony check",
+//         "Style check",
+//         "Compliments and roasts",
+//         "etc."
+//     ],
+//     liveUrl: "#",
+//     githubUrl: "#"
+//   },
+//   {
+//     title: "UofT P2P Loan",
+//     description: "If didn't paid, added to tuition fee etc etc",
+//     tags: ["#", "#"],
+//     image: "/images/projects/logo-p2p-loan.jpeg",
+//     screenshots: [
+//         "/images/projects/#.png",
+//         "/images/projects/#.png",
+//         "/images/projects/#.png",
+//         "/images/projects/#.png"
+//     ],
+//     techStack: ["#", "#"],
+//     features: [
+//         "Peer-to-peer loan system in UofT",
+//         "Available to UofT students only",
+//         "Custom interest rates and due date",
+//         "etc",
+//         "etc"
+//     ],
+//     liveUrl: "#",
+//     githubUrl: "#"
+//   }
 ];
 
 export default function Projects({ setSelectedProject }) {
+  // Preload project images when component mounts
+  React.useEffect(() => {
+    projects.forEach(project => {
+      if (project.image) {
+        const img = new Image();
+        img.src = project.image;
+      }
+    });
+  }, []);
+
   return (
     <section className="pt-32 pb-20">
       <div className="mb-16">
@@ -53,11 +151,11 @@ export default function Projects({ setSelectedProject }) {
             onClick={() => setSelectedProject(project)}
           >
             <ProjectCard 
-                title={project.title}
-                description={project.description}
-                tags={project.tags}
-                image={project.image}
-                onClick={() => setSelectedProject(project)} // Add this
+              title={project.title}
+              description={project.description}
+              tags={project.tags}
+              image={project.image}
+              onClick={() => setSelectedProject(project)}
             />
           </motion.div>
         ))}

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import AnimatedImage from './AnimatedImage';
 
 const ProjectCard = ({ title, description, tags, image, onClick }) => {
   return (
@@ -10,13 +11,14 @@ const ProjectCard = ({ title, description, tags, image, onClick }) => {
                  hover:border-white/20 hover:bg-zinc-900/60 transition-all cursor-pointer"
       onClick={onClick}
     >
-      {/* Project Image Container */}
-      <div className="relative aspect-video mb-6 overflow-hidden rounded-[24px] bg-zinc-800">
-        <img 
-          src={image} 
+      {/* Project Image Container - REMOVE ALL BACKGROUNDS HERE */}
+      <div className="relative aspect-video mb-6 overflow-hidden rounded-[24px]">
+        <AnimatedImage
+          src={image}
           alt={title}
-          className="w-full h-full object-cover opacity-80 group-hover:opacity-100 
-                     group-hover:scale-105 transition-all duration-500"
+          containerClassName="relative aspect-video mb-6 overflow-hidden rounded-[24px]"
+          className="transition-transform duration-500 group-hover:scale-105"
+          eager={true} // Add eager loading for project cards
         />
         <div className="absolute top-4 right-4 p-2 bg-black/50 backdrop-blur-md 
                         rounded-full border border-white/10 opacity-0 group-hover:opacity-100 

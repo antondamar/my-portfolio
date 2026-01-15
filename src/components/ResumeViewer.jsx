@@ -1,6 +1,7 @@
 import React from 'react';
 
 export default function ResumeViewer() {
+  <title>Resume</title>
   return (
     <div className="w-full h-[80vh] mt-10 rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl">
       <iframe

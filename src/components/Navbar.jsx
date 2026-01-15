@@ -17,6 +17,18 @@ export default function Navbar({ setView, currentView }) {
   const glassIndex = hoveredIndex ?? activeIndex
   const [glassStyle, setGlassStyle] = useState({ width: 0, x: 0 })
 
+  const handleNavClick = (item) => {
+    // If clicking "About" while already in About section but in detailed view
+    if (item === "About" && currentView === "About") {
+      // Force reset to main About view
+      // You'll need to pass a callback or use context/state management
+      // For now, we'll just set the view (App.js will handle the reset)
+      setView(item);
+    } else {
+      setView(item);
+    }
+  };
+
   // Initialize refs with default values
   useLayoutEffect(() => {
     itemRefs.current = itemRefs.current.slice(0, navItems.length)
@@ -67,17 +79,15 @@ export default function Navbar({ setView, currentView }) {
         {/* Buttons */}
         {navItems.map((item, index) => (
         <button
-            key={item}
-            ref={el => (itemRefs.current[index] = el)}
-            onMouseEnter={() => setHoveredIndex(index)}
-            onClick={() => {
-              setView(item) 
-            }}
-            className={`relative px-6 py-2 rounded-full text-sm font-medium transition-colors duration-300
-                       ${currentView === item ? 'text-white' : 'text-zinc-400 hover:text-white'}`}
-          >
-            <span className="relative z-10">{item}</span>
-          </button>
+          key={item}
+          ref={el => (itemRefs.current[index] = el)}
+          onMouseEnter={() => setHoveredIndex(index)}
+          onClick={() => handleNavClick(item)}
+          className={`relative px-6 py-2 rounded-full text-sm font-medium transition-colors duration-300
+                     ${currentView === item ? 'text-white' : 'text-zinc-400 hover:text-white'}`}
+        >
+          <span className="relative z-10">{item}</span>
+        </button>
         ))}
       </div>
     </nav>

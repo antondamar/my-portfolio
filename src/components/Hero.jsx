@@ -1,29 +1,64 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Linkedin, Instagram, X, Mail, Music2 } from 'lucide-react';
-// Import your social icons here (Github, Linkedin, etc.)
-
+import { 
+  LinkedInIcon, 
+  InstagramIcon, 
+  TikTokIcon, 
+  XIcon, 
+  GmailIcon,
+  GitHubIcon 
+} from './SocialIcons';
 
 const insights = [
   "I am a Proud Indonesian",
-  "Building the world with AI and blockchain",
+  "Building the world with AI",
   "Tahu Bulat",
   "I don't sell Bitcoin, I HODL",
-  "I believe that AI and blockchain are the future"
+  "AI is the future"
 ];
 
 const socials = [
-    { icon: <Linkedin size={20} />, link: "https://linkedin.com/in/ferrelhandoyo", label: "LinkedIn" },
-    { icon: <Instagram size={20} />, link: "https://instagram.com/ferrelhandoyo", label: "Instagram" },
-    { icon: <Music2 size={20} />, link: "https://tiktok.com/@ferrelhandoyo30", label: "TikTok" },
-    { icon: <X size={20} />, link: "https://x.com/ferrelhandoyo", label: "X" },
-    { icon: <Mail size={20} />, link: "mailto:ferrelhandoyo@gmail.com", label: "Gmail" },
+  { 
+    Icon: LinkedInIcon, 
+    link: "https://linkedin.com/in/ferrelhandoyo", 
+    label: "LinkedIn",
+    color: "#0A66C2"
+  },
+  { 
+    Icon: InstagramIcon, 
+    link: "https://instagram.com/ferrelhandoyo", 
+    label: "Instagram",
+    color: "#E4405F"
+  },
+  { 
+    Icon: TikTokIcon, 
+    link: "https://tiktok.com/@ferrelhandoyo30", 
+    label: "TikTok",
+    color: "#000000"
+  },
+  { 
+    Icon: XIcon, 
+    link: "https://x.com/ferrelhandoyo", 
+    label: "X",
+    color: "#000000"
+  },
+  { 
+    Icon: GmailIcon, 
+    link: "mailto:ferrelhandoyo@gmail.com", 
+    label: "Gmail",
+    color: "#EA4335"
+  },
+  { 
+    Icon: GitHubIcon, 
+    link: "https://github.com/ferrelhandoyo", 
+    label: "GitHub",
+    color: "#181717"
+  },
 ];
 
 export default function Hero() {
   const [index, setIndex] = useState(0);
 
-  // Controls the timing of the fade (4 seconds per phrase)
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % insights.length);
@@ -38,15 +73,38 @@ export default function Hero() {
       transition={{ duration: 0.8 }}
       className="pt-32 mb-10"
     >
-      <title>All About Ferrel</title>
-      {/* Socials */}
-      <div className="flex gap-6 mb-6 text-zinc-500">
-        {socials.map((social, index) => (
-          <a key={index} href={social.link} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-            {social.icon}
+      <title>Ferrel Handoyo | Portfolio</title>
+      
+      {/* Simple Social Media Icons */}
+      <div className="flex gap-6 mb-6">
+        {socials.map((social, idx) => (
+          <a 
+            key={idx}
+            href={social.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative"
+          >
+            {/* Simple hover animation - just color change */}
+            <div className="p-2 rounded-lg transition-all duration-300 
+                         bg-transparent group-hover:bg-zinc-900/50
+                         border border-transparent group-hover:border-zinc-800">
+              <social.Icon 
+                className="w-5 h-5 text-zinc-500 group-hover:text-white transition-colors duration-300" 
+              />
+            </div>
+            
+            {/* Simple tooltip */}
+            <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 
+                         opacity-0 group-hover:opacity-100 transition-opacity duration-200
+                         px-2 py-1 bg-zinc-900 text-xs text-white rounded-md pointer-events-none
+                         whitespace-nowrap">
+              {social.label}
+            </div>
           </a>
         ))}
       </div>
+      
       {/* Name and Major */}
       <h1 className="text-6xl font-extrabold tracking-tighter mb-4 text-white">
         Ferrel Himawan Handoyo
@@ -55,7 +113,7 @@ export default function Hero() {
         Economics & CS Student <br/> University of Toronto
       </p>
       
-      {/* Infinite Fade Animation (Replacing Running Text) */}
+      {/* Infinite Fade Animation */}
       <div className="h-10 relative border-y border-zinc-900/50 py-20 flex items-center justify-center overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.p

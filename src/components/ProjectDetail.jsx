@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
+import AnimatedImage from './AnimatedImage';
 
 export default function ProjectDetail({ project, onBack }) {
   useEffect(() => {
@@ -42,12 +43,12 @@ export default function ProjectDetail({ project, onBack }) {
       {/* 4 Screenshot Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-16">
         {project.screenshots?.map((screenshot, index) => (
-          <div key={index} className="aspect-[17/9] rounded-[24px] overflow-hidden bg-zinc-900/50 border border-white/5 shadow-2xl">
-            <img 
-              src={screenshot} 
+          <div key={index} className="aspect-[17/9] rounded-[24px] overflow-hidden bg-zinc-900 border border-white/5 shadow-2xl">
+            <AnimatedImage
+              src={screenshot}
               alt={`${project.title} screenshot ${index + 1}`}
-              className="w-full h-full object-cover"
-              loading="lazy"
+              containerClassName="aspect-[17/9] rounded-[24px] overflow-hidden bg-zinc-900 border border-white/5 shadow-2xl"
+              className="w-full h-full"
             />
           </div>
         ))}
