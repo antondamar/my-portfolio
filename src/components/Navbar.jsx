@@ -1,14 +1,18 @@
 import React, { useState, useRef, useLayoutEffect } from 'react'
 import { motion } from 'framer-motion'
 
-export default function Navbar({ setView }) {
+export default function Navbar({ setView, currentView }) {
   const navItems = ["Home", "About", "Projects", "Resume"]
 
   const containerRef = useRef(null)
   const itemRefs = useRef([])
 
   const [hoveredIndex, setHoveredIndex] = useState(null)
-  const [activeIndex, setActiveIndex] = useState(0)
+
+  // 1. DYNAMIC INDEX: Find where the currentView is in our array
+  const activeIndex = navItems.indexOf(currentView) !== -1 
+    ? navItems.indexOf(currentView) 
+    : 0;
 
   const glassIndex = hoveredIndex ?? activeIndex
   const [glassStyle, setGlassStyle] = useState({ width: 0, x: 0 })
@@ -52,11 +56,7 @@ export default function Navbar({ setView }) {
             x: glassStyle.x,
             scale: hoveredIndex !== null ? 1.04 : 1
           }}
-          initial={{
-            width: 0,
-            x: 0,
-            scale: 1
-          }}
+          initial={false} 
           transition={{
             type: "spring",
             stiffness: 380,
@@ -66,17 +66,15 @@ export default function Navbar({ setView }) {
 
         {/* Buttons */}
         {navItems.map((item, index) => (
-          <button
+        <button
             key={item}
             ref={el => (itemRefs.current[index] = el)}
             onMouseEnter={() => setHoveredIndex(index)}
             onClick={() => {
-              setActiveIndex(index)
-              setView(item)
+              setView(item) 
             }}
-            className="relative px-6 py-2 rounded-full text-sm font-medium
-                       text-zinc-400 hover:text-white transition-colors duration-300
-                       whitespace-nowrap min-w-[80px] flex items-center justify-center"
+            className={`relative px-6 py-2 rounded-full text-sm font-medium transition-colors duration-300
+                       ${currentView === item ? 'text-white' : 'text-zinc-400 hover:text-white'}`}
           >
             <span className="relative z-10">{item}</span>
           </button>

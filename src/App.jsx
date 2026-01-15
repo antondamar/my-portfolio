@@ -5,14 +5,38 @@ import AwardTimeline from './components/AwardTimeline';
 import ResumeViewer from './components/ResumeViewer';
 import LiquidBackground from './components/LiquidBackground';
 import About from './components/About';
+import Projects from './components/Projects';
+import ProjectDetail from './components/ProjectDetail'; // Don't forget to import this!
 
 function App() {
-  const [currentView, setCurrentView] = useState('Home');
+  const [currentView, setCurrentView] = useState(() => {
+    return localStorage.getItem('portfolioView') || 'Home';
+  });
+
+  const [selectedProject, setSelectedProject] = useState(() => {
+    const saved = localStorage.getItem('selectedProject');
+    return saved ? JSON.parse(saved) : null;
+  });
+
+  const handleViewChange = (view) => {
+    if (view === 'Projects') {
+      setSelectedProject(null); // Force back to general grid
+    }
+    setCurrentView(view);
+  };
 
   useEffect(() => {
     const img = new Image();
     img.src = "/images/me.jpeg";
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('portfolioView', currentView);
+  }, [currentView]);
+
+  useEffect(() => {
+    localStorage.setItem('selectedProject', JSON.stringify(selectedProject));
+  }, [selectedProject]);
 
   return (
     <div className="min-h-screen text-white font-sans relative">
@@ -20,7 +44,7 @@ function App() {
       {/* Background (behind everything) */}
       <LiquidBackground />
 
-      <Navbar setView={setCurrentView} />
+      <Navbar setView={handleViewChange} currentView={currentView} />
 
       {/* Foreground content */}
       <main className="max-w-6xl mx-auto px-6 pb-0 relative z-10">
@@ -43,6 +67,15 @@ function App() {
           </>
         ) : currentView === 'About' ? (
             <About />
+        ) : currentView === 'Projects' ? (
+            selectedProject ? (
+              <ProjectDetail 
+                project={selectedProject} 
+                onBack={() => setSelectedProject(null)} 
+              />
+            ) : (
+              <Projects setSelectedProject={setSelectedProject} />
+            )
         ) : currentView === 'Resume' ? (
           <div className="pt-32">
             <h1 className="text-6xl font-extrabold tracking-tighter text-white mb-2">

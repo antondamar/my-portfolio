@@ -38,6 +38,7 @@ export default function Hero() {
       transition={{ duration: 0.8 }}
       className="pt-32 mb-10"
     >
+      <title>All About Ferrel</title>
       {/* Socials */}
       <div className="flex gap-6 mb-6 text-zinc-500">
         {socials.map((social, index) => (

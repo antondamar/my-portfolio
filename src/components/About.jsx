@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowLeft } from 'lucide-react';
 
 const aboutStyles = {
   "English speaker": (
@@ -51,22 +52,22 @@ const educationData = {
   "Primary": { 
     title: "Al-Azhar 9 Elementary School Bekasi", years: "2013 - 2019", location: "Indonesia",
     images: ["images/sd1.jpg", "images/sd2.jpeg", "images/sd3.jpg", "images/sd5.jpeg", "images/sd4.jpeg", "images/sd6.jpeg"], 
-    logo: "/logos/sd.png", scale: 2.2
+    logo: "logos/sd.png", scale: 2.2, page: "SD"
   },
   "Junior": { 
     title: "115 Junior High School Jakarta", years: "2019 - 2022", location: "Indonesia",
     images: ["images/smabel1.png", "images/smabel2.jpeg", "images/smabel3.jpeg", "images/smabel4.jpeg", "images/smabel5.jpeg"],
-    logo: "/logos/smabel.png", scale: 3
+    logo: "logos/smabel.png", scale: 3, page: "SMP"
   },
   "Senior": { 
     title: "M.H. Thamrin State Prominent High School Jakarta", years: "2022 - 2025", location: "Indonesia",
     images: ["images/mht1.jpeg", "images/mht2.jpeg", "images/mht6.jpg", "images/mht5.jpeg", "images/mht4.jpeg", "images/mht3.jpeg"],
-    logo: "/logos/mht.png", scale: 2.4
+    logo: "logos/mht.png", scale: 2.4, page: "SMA"
   },
   "Undergrad": { 
     title: "University of Toronto Mississauga", years: "2025 - Present", location: "Canada",
     images: ["images/utm1.webp", "images/u2.jpg", "images/u3.jpg", "images/u4.jpg", "images/utm5.jpeg"],
-    logo: "/logos/utm.png", scale: 2.8
+    logo: "logos/utm.png", scale: 2.8, page: "Kuliah"
   }
 };
 
@@ -77,7 +78,7 @@ const preloadImage = () => {
 };
 preloadImage();
 
-export default function About() {
+export default function About({ onBack }) {
   const [activeSection, setActiveSection] = useState(null);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [showMoreMusic, setShowMoreMusic] = useState(false);
@@ -88,6 +89,14 @@ export default function About() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, [activeSection]);
+
+  useEffect(() => {
+    if (activeSection && educationData[activeSection]) {
+      document.title = educationData[activeSection].page;
+    } else {
+      document.title = "About";
+    }
   }, [activeSection]);
 
   // Additional preloading on component mount
@@ -139,7 +148,6 @@ export default function About() {
       className="pt-32 pb-10 min-h-screen flex flex-col"
     >
       <div className="flex-grow">
-        <title>About</title>
         <AnimatePresence mode="wait">
           {!activeSection ? (
             <motion.div key="main" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, x: -20 }}>
@@ -391,13 +399,15 @@ export default function About() {
             </motion.div>
           ) : (
             /* --- DETAILED VIEW --- */
-            <motion.div key="details" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }} className="pt-10">
-              <button 
-                onClick={() => setActiveSection(null)} 
-                className="fixed top-24 left-6 md:left-12 z-[100] bg-zinc-950/50 backdrop-blur-md px-4 py-2 rounded-full border border-zinc-800 text-zinc-500 hover:text-white text-[11px] font-bold uppercase tracking-widest transition-all hover:border-zinc-500 shadow-2xl"
-              >
-                ← Back to About
-              </button>
+            <motion.div key="details" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }} className="pt-7">
+            {/* Back Button - Lifted with z-index and relative positioning */}
+            <button 
+              onClick={() => setActiveSection(null)} 
+              className="relative z-[60] flex items-center gap-2 text-zinc-500 hover:text-white mb-12 transition-colors group cursor-pointer"
+            >
+              <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+              <span className="text-[10px] font-bold uppercase tracking-widest font-sans">Back to About</span>
+            </button>
               <div className="flex flex-col lg:flex-row gap-16">
                 <div className="w-full lg:w-3/5">
                   {/* 1. YEAR (Top) */}
