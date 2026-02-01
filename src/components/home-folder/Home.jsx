@@ -7,7 +7,7 @@ import {
   XIcon, 
   GmailIcon,
   GitHubIcon 
-} from './SocialIcons';
+} from '../SocialIcons';
 
 const insights = [
   "I am a Proud Indonesian",
@@ -50,7 +50,7 @@ const socials = [
   },
   { 
     Icon: GitHubIcon, 
-    link: "https://github.com/ferrelhandoyo", 
+    link: "https://github.com/antondamar", 
     label: "GitHub",
     color: "#181717"
   },

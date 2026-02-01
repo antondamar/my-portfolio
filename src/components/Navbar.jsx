@@ -1,40 +1,34 @@
 import React, { useState, useRef, useLayoutEffect } from 'react'
 import { motion } from 'framer-motion'
+import { Link, useLocation } from 'react-router-dom'
 
-export default function Navbar({ setView, currentView }) {
-  const navItems = ["Home", "About", "Projects", "Resume"]
+export default function Navbar() {
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Projects", path: "/projects" },
+    { name: "Resume", path: "/resume" }
+  ]
 
+  const location = useLocation()
   const containerRef = useRef(null)
   const itemRefs = useRef([])
+  const isInitialMount = useRef(true)
 
   const [hoveredIndex, setHoveredIndex] = useState(null)
-
-  // 1. DYNAMIC INDEX: Find where the currentView is in our array
-  const activeIndex = navItems.indexOf(currentView) !== -1 
-    ? navItems.indexOf(currentView) 
-    : 0;
-
-  const glassIndex = hoveredIndex ?? activeIndex
   const [glassStyle, setGlassStyle] = useState({ width: 0, x: 0 })
 
-  const handleNavClick = (item) => {
-    // If clicking "About" while already in About section but in detailed view
-    if (item === "About" && currentView === "About") {
-      // Force reset to main About view
-      // You'll need to pass a callback or use context/state management
-      // For now, we'll just set the view (App.js will handle the reset)
-      setView(item);
-    } else {
-      setView(item);
-    }
-  };
+  const activeIndex = navItems.findIndex(item => 
+    item.path === "/" 
+      ? location.pathname === "/" // Exact match for Home only
+      : location.pathname.startsWith(item.path) // "Starts with" for everything else
+  );
+  const glassIndex = hoveredIndex ?? (activeIndex !== -1 ? activeIndex : 0)
 
-  // Initialize refs with default values
   useLayoutEffect(() => {
     itemRefs.current = itemRefs.current.slice(0, navItems.length)
-  }, [])
+  }, [navItems.length])
 
-  // Calculate glass position
   useLayoutEffect(() => {
     const el = itemRefs.current[glassIndex]
     const container = containerRef.current
@@ -48,6 +42,13 @@ export default function Navbar({ setView, currentView }) {
       width: elRect.width,
       x: elRect.left - containerRect.left
     })
+
+    if (isInitialMount.current) {
+      const timeout = setTimeout(() => {
+        isInitialMount.current = false
+      }, 50)
+      return () => clearTimeout(timeout)
+    }
   }, [glassIndex])
 
   return (
@@ -58,36 +59,32 @@ export default function Navbar({ setView, currentView }) {
         className="relative bg-zinc-900/40 backdrop-blur-2xl border border-white/10
                    px-2 py-2 rounded-full flex gap-1 shadow-2xl"
       >
-        {/* Glass - Always render but with initial zero width */}
+        {/* Animated Glass Selection Indicator */}
         <motion.div
-          className="absolute inset-[2px] rounded-full
-                     bg-white/10 border border-white/20
-                     shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_0_20px_rgba(255,255,255,0.12)]"
+          className="absolute inset-[2px] rounded-full bg-white/10 border border-white/20"
           animate={{
             width: glassStyle.width,
             x: glassStyle.x,
             scale: hoveredIndex !== null ? 1.04 : 1
           }}
-          initial={false} 
-          transition={{
+          transition={isInitialMount.current ? { duration: 0 } : {
             type: "spring",
             stiffness: 380,
             damping: 30
           }}
         />
 
-        {/* Buttons */}
         {navItems.map((item, index) => (
-        <button
-          key={item}
-          ref={el => (itemRefs.current[index] = el)}
-          onMouseEnter={() => setHoveredIndex(index)}
-          onClick={() => handleNavClick(item)}
-          className={`relative px-6 py-2 rounded-full text-sm font-medium transition-colors duration-300
-                     ${currentView === item ? 'text-white' : 'text-zinc-400 hover:text-white'}`}
-        >
-          <span className="relative z-10">{item}</span>
-        </button>
+          <Link
+            key={item.name}
+            to={item.path}
+            ref={el => (itemRefs.current[index] = el)}
+            onMouseEnter={() => setHoveredIndex(index)}
+            className={`relative px-6 py-2 rounded-full text-sm font-medium transition-colors duration-300
+                      ${location.pathname === item.path ? 'text-white' : 'text-zinc-400 hover:text-white'}`}
+          >
+            <span className="relative z-10">{item.name}</span>
+          </Link>
         ))}
       </div>
     </nav>

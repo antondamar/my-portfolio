@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-import AnimatedImage from './AnimatedImage';
+import AnimatedImage from '../AnimatedImage';
 
 const ProjectCard = ({ title, description, tags, image, onClick }) => {
   return (

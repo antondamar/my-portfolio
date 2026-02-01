@@ -110,7 +110,7 @@ export default function AwardTimeline() {
           'z-30' ensures it stays above the timeline line
       */}
       <div className="sticky top-24 z-30 px-4">
-        <div className="flex justify-between w-full max-w-6xl mx-auto">
+        <div className="flex justify-between w-full max-w-6xl mx-auto mb-10">
           <h2 className="text-zinc-500 uppercase tracking-widest text-[15px] font-extrabold">
             Awards
           </h2>

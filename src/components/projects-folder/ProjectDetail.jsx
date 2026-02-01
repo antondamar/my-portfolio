@@ -1,14 +1,22 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
-import AnimatedImage from './AnimatedImage';
+import AnimatedImage from '../AnimatedImage';
+import { useParams, useNavigate } from 'react-router-dom';
+import { projects } from '../../data/projects';
 
-export default function ProjectDetail({ project, onBack }) {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [project.title]);
+export default function ProjectDetail() {
+  const { projectId } = useParams();
+  const navigate = useNavigate();
+
+  const project = projects.find(p => 
+    p.title.toLowerCase().replace(/ /g, '-') === projectId
+  );
+
+  if (!project) return <div>Project not found</div>;
 
   return (
+    
     <motion.section 
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
@@ -16,7 +24,7 @@ export default function ProjectDetail({ project, onBack }) {
     >
       {/* Back Button */}
       <button 
-        onClick={onBack}
+        onClick={() => navigate('/projects')}
         className="flex items-center gap-2 text-zinc-500 hover:text-white mb-12 transition-colors group"
       >
         <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
@@ -36,7 +44,7 @@ export default function ProjectDetail({ project, onBack }) {
         ))}
       </div>
 
-      <p className="text-xl text-zinc-400 leading-relaxed mb-16 font-light italic">
+      <p className="text-xl text-zinc-400 leading-relaxed mb-16 font-light text-justify">
         {project.description}
       </p>
 
@@ -57,7 +65,7 @@ export default function ProjectDetail({ project, onBack }) {
       {/* Glass Tech Stack Badges */}
       {project.techStack && (
         <div className="mb-16">
-          <h3 className="text-xl font-bold text-white mb-6">Tech Stack</h3>
+          <h3 className="text-2xl font-bold text-white mb-6">Tech Stack</h3>
           <div className="flex flex-wrap gap-3">
             {project.techStack.map(tech => (
               <span key={tech} className="px-4 py-2 bg-white/5 backdrop-blur-md border border-white/10 
@@ -69,15 +77,17 @@ export default function ProjectDetail({ project, onBack }) {
         </div>
       )}
 
-      {/* Glass Features List */}
+      {/* Clean Bulleted Features List */}
       {project.features && (
         <div className="mb-16">
-          <h3 className="text-xl font-bold text-white mb-6">Key Features</h3>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <h3 className="text-2xl font-bold text-white mb-6">Key Features</h3>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-12">
             {project.features.map((feature, index) => (
-              <li key={index} className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 backdrop-blur-sm">
-                <div className="w-1.5 h-1.5 rounded-full bg-white/40 flex-shrink-0" />
-                <span className="text-zinc-300 text-s font-bold group-hover:text-zinc-300 transition-colors">{feature}</span>
+              <li key={index} className="flex items-center gap-3">
+                <div className="w-1.5 h-1.5 rounded-full bg-zinc-600 flex-shrink-0" />
+                <span className="text-zinc-400 text-[18px] font-medium">
+                  {feature}
+                </span>
               </li>
             ))}
           </ul>
