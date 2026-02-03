@@ -47,6 +47,7 @@ export default function EducationDetail() {
 								<img
 									src={currentData.logo}
 									style={{ transform: `scale(${currentData.scale || 1}) translateX(20px)` }}
+									className="rounded-lg"
 								/>
 							)}
 						</div>

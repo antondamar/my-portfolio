@@ -29,7 +29,7 @@ export const educationData = {
   "Senior": { 
     title: "M.H. Thamrin State Prominent High School Jakarta", years: "2022 - 2025", location: "Indonesia",
     images: ["/images/mht1.jpeg", "/images/mht2.jpeg", "/images/mht6.jpg", "/images/mht5.jpeg", "/images/mht4.jpeg", "/images/mht3.jpeg", "/images/mht7.jpeg", "/images/mht8.jpeg", "/images/mht9.jpeg"],
-    logo: "/logos/mht.png", scale: 2.4, page: "SMA", 
+    logo: "/logos/mhtt.png", scale: 2.4, page: "SMA", 
     description: {
       "English speaker": [],
       "Indonesian": [
